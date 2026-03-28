@@ -1,0 +1,15 @@
+services:
+  - type: worker
+    name: botforgev1-worker
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: python BotForge/main.py
+    plan: starter
+    autoDeploy: true
+  - type: web
+    name: botforgev1-dashboard
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn dashboard_app:app --host 0.0.0.0 --port $PORT
+    plan: starter
+    autoDeploy: true
